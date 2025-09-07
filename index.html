@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Basics - Student Handout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.4;
+            margin: 20px;
+            background: #f8f9fa;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .section {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        .activity-box {
+            background: #e3f2fd;
+            border: 2px dashed #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .circle-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .circle {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            background: #f1f8e9;
+        }
+        .vs-circle {
+            width: 80px;
+            height: 80px;
+            background: #ff9800;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .word-bank {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .word-bank span {
+            display: inline-block;
+            background: #ffcc02;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 15px;
+            font-size: 14px;
+            border: 1px solid #f57c00;
+        }
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .fill-blank {
+            border-bottom: 2px solid #333;
+    	    min-width: 100px;
+            display: inline-block;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .matching-table th {
+            background: #667eea;
+            color: white;
+        }
+        .image-placeholder {
+            width: 80px;
+            height: 60px;
+            background: #e0e0e0;
+            border: 2px dashed #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .reflection-box {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .homework-section {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .analogy-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px solid #ffc107;
+        }
+        .analogy-item {
+            text-align: center;
+            flex: 1;
+        }
+        .equals-sign {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff5722;
+            margin: 0 10px;
+        }
+        @media print {
+            body { 
+                background: white; 
+                margin: 10px;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            .section { 
+                box-shadow: none; 
+                border: 1px solid #ddd; 
+                page-break-inside: avoid;
+                margin: 10px 0;
+            }
+            .activity-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌐 Networking Basics</h1>
+        <p><strong>Form 2 Computer Science</strong></p>
+        <p>Name: _________________ Date: _________________</p>
+    </div>
+
+    <!-- Section 1: Network Interface Card -->
+    <div class="section">
+        <h2>🔌 Part 1: Network Interface Card (NIC)</h2>
+        
+        <div class="activity-box">
+            <h3>🔍 Activity 1: Complete the Definition</h3>
+            <p>A Network Interface Card (NIC) is a _________________ component that allows a device to _________________ to a network. It acts like a _________________ between your computer and the network.</p>
+        </div>
+
+        <div class="activity-box">
+            <h3>🎯 Activity 2: NIC Detective - Match the Images</h3>
+            <table class="matching-table">
+                <tr>
+                    <th>Device</th>
+                    <th>Image</th>
+                    <th>Type of NIC</th>
+                    <th>Connection Method</th>
+                </tr>
+                <tr>
+                    <td>Desktop Computer</td>
+                    <td><div class="image-placeholder">Ethernet Port</div></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td>Smartphone</td>
+                    <td><div class="image-placeholder">WiFi Symbol</div></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td>Bluetooth Headphones</td>
+                    <td><div class="image-placeholder">Bluetooth Symbol</div></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+            </table>
+            
+            <div class="word-bank">
+                <strong>Word Bank:</strong>
+                <span>Wired NIC</span> <span>Wireless NIC</span> <span>Ethernet Cable</span> 
+                <span>Radio Waves</span> <span>Bluetooth Signals</span> <span>Wi-Fi Signals</span>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h3>💭 Quick Think: What would happen if...?</h3>
+            <p>If we removed the NIC from a computer, what would happen?</p>
+            <div style="border: 1px solid #ddd; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+        </div>
+    </div>
+
+    <!-- Section 2: MAC vs IP Addresses -->
+    <div class="section">
+        <h2>🏠 Part 2: MAC vs IP Addresses</h2>
+        
+        <div class="activity-box">
+            <h3>🎯 Activity 3: Sort and Classify</h3>
+            <p><strong>Instructions:</strong> Put the words from the word bank into the correct circles.</p>
+            
+            <div class="circle-diagram">
+                <div class="circle">
+                    <div>
+                        <strong>MAC Address</strong><br>
+                        <small>Write words here:</small>
+                        <div style="min-height: 60px; margin-top: 5px;"></div>
+                    </div>
+                </div>
+                
+                <div class="circle vs-circle">VS</div>
+                
+                <div class="circle">
+                    <div>
+                        <strong>IP Address</strong><br>
+                        <small>Write words here:</small>
+                        <div style="min-height: 60px; margin-top: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="word-bank">
+                <strong>Word Bank - Cut out and paste or copy:</strong><br>
+                <span>Permanent</span> <span>Changeable</span> <span>Manufacturer assigns</span>
+                <span>Network assigns</span> <span>Like fingerprint</span> <span>Like postal address</span>
+                <span>Local network only</span> <span>Works across internet</span>
+                <span>Hardware identity</span> <span>Network location</span>
+                <span>00:1B:44:11:3A:B7</span> <span>192.168.1.100</span>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h3>🧠 Activity 4: Create Your Own Analogy</h3>
+            <div class="analogy-box">
+                <div class="analogy-item">
+                    <strong>MAC Address</strong><br>
+                    is like<br>
+                    <div style="border: 1px solid #ddd; min-height: 40px; padding: 5px; margin: 5px 0;"></div>
+                </div>
+                <div class="equals-sign">=</div>
+                <div class="analogy-item">
+                    <strong>IP Address</strong><br>
+                    is like<br>
+                    <div style="border: 1px solid #ddd; min-height: 40px; padding: 5px; margin: 5px 0;"></div>
+                </div>
+            </div>
+            <p><em>Examples: ID card vs home address, DNA vs current location, etc.</em></p>
+        </div>
+
+        <div class="activity-box">
+            <h3>📋 Activity 5: Fill in the Comparison Chart</h3>
+            <table class="matching-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>MAC Address</th>
+                    <th>IP Address</th>
+                </tr>
+                <tr>
+                    <td>Can it be changed?</td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td>Who assigns it?</td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td>Where does it work?</td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+                <tr>
+                    <td>Example format</td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Section 3: Router -->
+    <div class="section">
+        <h2>🚦 Part 3: The Role of a Router</h2>
+        
+        <div class="activity-box">
+            <h3>🎯 Activity 6: Router Functions - Check the Boxes</h3>
+            <p><strong>What does a router do? Tick all that apply:</strong></p>
+            <div style="margin: 15px 0;">
+                <label><input type="checkbox"> □ Stores all your photos</label><br>
+                <label><input type="checkbox"> □ Directs data to correct destinations</label><br>
+                <label><input type="checkbox"> □ Connects different networks together</label><br>
+                <label><input type="checkbox"> □ Makes coffee</label><br>
+                <label><input type="checkbox"> □ Provides network security</label><br>
+                <label><input type="checkbox"> □ Finds the best path for data</label><br>
+                <label><input type="checkbox"> □ Plays music</label><br>
+                <label><input type="checkbox"> □ Prevents data collisions</label><br>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h3>🚦 Activity 7: Router Analogy Web</h3>
+            <p><strong>We learned that a router is like a traffic police officer. Can you think of 3 other analogies?</strong></p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div style="width: 100px; height: 100px; border: 3px solid #ff5722; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: #fff3e0;">
+                    <strong>ROUTER<br>is like...</strong>
+                </div>
+                
+                <div style="display: flex; justify-content: space-around; margin: 30px 0;">
+                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
+                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
+                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="activity-box">
+            <h3>🎭 Activity 8: Human Router Simulation Notes</h3>
+            <p><strong>During our class activity, write down what you observed:</strong></p>
+            
+            <p><strong>What happened when routers were working normally?</strong></p>
+            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
+            
+            <p><strong>What happened when one router "went down"?</strong></p>
+            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
+            
+            <p><strong>Why do we need multiple routers on the internet?</strong></p>
+            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
+        </div>
+    </div>
+
+    <!-- Reflection Section -->
+    <div class="reflection-box">
+        <h2>🤔 What I Learned Today</h2>
+        
+        <p><strong>1. The most interesting thing I learned was:</strong></p>
+        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+        
+        <p><strong>2. One thing I'm still confused about:</strong></p>
+        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+        
+        <p><strong>3. How I use networking in my daily life:</strong></p>
+        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+        
+        <p><strong>4. Rate your understanding (circle one):</strong></p>
+        <div style="font-size: 18px; margin: 10px 0;">
+            😕 Need Help &nbsp;&nbsp;&nbsp; 😐 Getting There &nbsp;&nbsp;&nbsp; 🙂 Good &nbsp;&nbsp;&nbsp; 😄 Excellent!
+        </div>
+    </div>
+
+    <!-- Homework Section -->
+    <div class="homework-section">
+        <h2>🏠 Homework Investigation</h2>
+        
+        <p><strong>Become a network detective! Complete these tasks:</strong></p>
+        
+        <div style="margin: 15px 0;">
+            <p><strong>1. Device Hunt - Find examples:</strong></p>
+            <p>Device with WIRED NIC: <span class="fill-blank" style="width: 200px;"></span></p>
+            <p>Device with WIRELESS NIC: <span class="fill-blank" style="width: 200px;"></span></p>
+        </div>
+        
+        <div style="margin: 15px 0;">
+            <p><strong>2. Draw a diagram showing how your home router connects devices to the internet:</strong></p>
+            <div style="border: 1px solid #4caf50; min-height: 150px; padding: 10px; margin: 10px 0; background: white;">
+                <small><em>Include: Your devices → Router → Internet</em></small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
