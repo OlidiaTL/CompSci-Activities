@@ -3,394 +3,895 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Networking Basics - Student Handout</title>
+    <title>Automated Systems & AI - Student Handout</title>
     <style>
+        @media print {
+            body { margin: 0; padding: 10mm; }
+            .page-break { page-break-after: always; }
+            .no-print { display: none; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
-            line-height: 1.4;
-            margin: 20px;
-            background: #f8f9fa;
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 210mm;
+            margin: 0 auto;
+            background: #f5f5f5;
         }
+        
+        .page {
+            background: white;
+            padding: 20mm;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
         .header {
             text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        .section {
-            background: white;
-            margin: 15px 0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 5px solid #667eea;
+        
+        .header h1 {
+            font-size: 24pt;
+            margin-bottom: 5px;
         }
-        .activity-box {
-            background: #e3f2fd;
-            border: 2px dashed #2196f3;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 10px;
+        
+        .header .subtitle {
+            font-size: 12pt;
+            color: #666;
         }
-        .circle-diagram {
+        
+        .student-info {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px 0;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #333;
         }
-        .circle {
-            width: 120px;
-            height: 120px;
-            border: 3px solid #4CAF50;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-weight: bold;
-            background: #f1f8e9;
+        
+        .student-info div {
+            flex: 1;
         }
-        .vs-circle {
-            width: 80px;
-            height: 80px;
-            background: #ff9800;
+        
+        .fill-line {
+            display: inline-block;
+            border-bottom: 1px solid #333;
+            min-width: 200px;
+            margin: 0 5px;
+        }
+        
+        h2 {
+            background: #333;
             color: white;
-            font-size: 18px;
+            padding: 8px 15px;
+            margin: 20px 0 10px 0;
+            font-size: 14pt;
+        }
+        
+        h3 {
+            color: #333;
+            margin: 15px 0 8px 0;
+            font-size: 12pt;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .key-concept {
+            border: 3px solid #333;
+            padding: 15px;
+            margin: 15px 0;
+            background: #f9f9f9;
+        }
+        
+        .key-concept strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 11pt;
+        }
+        
+        .diagram {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .diagram-box {
+            border: 2px solid #666;
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 200px;
             font-weight: bold;
         }
-        .word-bank {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
-            padding: 15px;
-            border-radius: 10px;
+        
+        .arrow {
+            font-size: 20pt;
+            margin: 5px 0;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .box {
+            border: 2px solid #666;
+            padding: 12px;
+            min-height: 100px;
+        }
+        
+        .box h4 {
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 5px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .answer-space {
+            border-bottom: 1px dotted #333;
+            min-height: 25px;
             margin: 10px 0;
         }
-        .word-bank span {
-            display: inline-block;
-            background: #ffcc02;
-            padding: 5px 10px;
-            margin: 3px;
-            border-radius: 15px;
-            font-size: 14px;
-            border: 1px solid #f57c00;
+        
+        .answer-box {
+            border: 2px solid #666;
+            min-height: 80px;
+            margin: 10px 0;
+            padding: 5px;
         }
-        .matching-table {
+        
+        .question {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-left: 4px solid #333;
+        }
+        
+        .question-number {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .mcq-option {
+            margin: 8px 0;
+            padding-left: 30px;
+        }
+        
+        .checkbox {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        table {
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
         }
-        .fill-blank {
-            border-bottom: 2px solid #333;
-    	    min-width: 100px;
-            display: inline-block;
-            margin: 0 auto;
-            text-align: center;
+        
+        th, td {
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: left;
         }
-        .matching-table th {
-            background: #667eea;
-            color: white;
-        }
-        .image-placeholder {
-            width: 80px;
-            height: 60px;
+        
+        th {
             background: #e0e0e0;
-            border: 2px dashed #999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #666;
-        }
-        .reflection-box {
-            background: #f3e5f5;
-            border: 2px solid #9c27b0;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .homework-section {
-            background: #e8f5e8;
-            border: 2px solid #4caf50;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .analogy-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff8e1;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 2px solid #ffc107;
-        }
-        .analogy-item {
-            text-align: center;
-            flex: 1;
-        }
-        .equals-sign {
-            font-size: 24px;
             font-weight: bold;
-            color: #ff5722;
-            margin: 0 10px;
         }
-        @media print {
-            body { 
-                background: white; 
-                margin: 10px;
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
-            }
-            .section { 
-                box-shadow: none; 
-                border: 1px solid #ddd; 
-                page-break-inside: avoid;
-                margin: 10px 0;
-            }
-            .activity-box {
-                page-break-inside: avoid;
-            }
+        
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        
+        .print-btn:hover {
+            background: #45a049;
+        }
+        
+        .score-box {
+            float: right;
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+        }
+        
+        .note-box {
+            border: 2px dashed #666;
+            padding: 10px;
+            margin: 10px 0;
+            background: #fffef0;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🌐 Networking Basics</h1>
-        <p><strong>Form 2 Computer Science</strong></p>
-        <p>Name: _________________ Date: _________________</p>
-    </div>
-
-    <!-- Section 1: Network Interface Card -->
-    <div class="section">
-        <h2>🔌 Part 1: Network Interface Card (NIC)</h2>
-        
-        <div class="activity-box">
-            <h3>🔍 Activity 1: Complete the Definition</h3>
-            <p>A Network Interface Card (NIC) is a _________________ component that allows a device to _________________ to a network. It acts like a _________________ between your computer and the network.</p>
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Print Handout</button>
+    
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="header">
+            <h1>🤖 AUTOMATED SYSTEMS & ARTIFICIAL INTELLIGENCE</h1>
+            <p class="subtitle">Form 2 Computer Science - Study Notes & Exercises</p>
         </div>
-
-        <div class="activity-box">
-            <h3>🎯 Activity 2: NIC Detective - Match the Images</h3>
-            <table class="matching-table">
+        
+        <div class="student-info">
+            <div>Name: <span class="fill-line"></span></div>
+            <div>Class: <span class="fill-line"></span></div>
+            <div>Date: <span class="fill-line"></span></div>
+        </div>
+        
+        <h2>PART 1: AUTOMATED SYSTEMS</h2>
+        
+        <div class="key-concept">
+            <strong>📌 KEY DEFINITION:</strong>
+            An <span class="highlight">automated system</span> is a combination of software and hardware designed to work automatically without human intervention, though often with human monitoring.
+        </div>
+        
+        <h3>1.1 The Three Main Components</h3>
+        
+        <div class="diagram">
+            <h4>How Automated Systems Work</h4>
+            <div class="diagram-box">SENSORS<br>(Input Devices)</div>
+            <div class="arrow">↓</div>
+            <p>Collect data from environment</p>
+            <div class="arrow">↓</div>
+            <div class="diagram-box">MICROPROCESSOR<br>(Brain)</div>
+            <div class="arrow">↓</div>
+            <p>Processes data & makes decisions</p>
+            <div class="arrow">↓</div>
+            <div class="diagram-box">ACTUATORS<br>(Output Devices)</div>
+            <div class="arrow">↓</div>
+            <p>Physical movement/action</p>
+        </div>
+        
+        <div class="section">
+            <p><strong>1. SENSORS:</strong> Input devices that take readings from their surroundings and send data to a microprocessor. If the data is analogue, it is converted to digital format by an ADC (Analogue-Digital Converter).</p>
+            
+            <p style="margin-top: 10px;"><strong>2. MICROPROCESSOR:</strong> Processes the data and takes necessary action based on programming.</p>
+            
+            <p style="margin-top: 10px;"><strong>3. ACTUATORS:</strong> Part of the device that helps achieve physical movements by converting electrical energy into mechanical force.</p>
+        </div>
+        
+        <div class="note-box">
+            <strong>💡 REAL WORLD EXAMPLE:</strong> Modern trains use automatic signal control. If the driver goes through a red light, sensors at the trackside send signals to the on-board computer, and actuators automatically apply the brakes!
+        </div>
+        
+        <h3>EXERCISE 1: Fill in the Blanks</h3>
+        <div class="question">
+            <p>1. An automated system uses <span class="fill-line" style="min-width: 150px;"></span> to collect data from the environment.</p>
+            
+            <p>2. The <span class="fill-line" style="min-width: 150px;"></span> processes the data and makes decisions.</p>
+            
+            <p>3. <span class="fill-line" style="min-width: 150px;"></span> convert electrical energy into mechanical movement.</p>
+            
+            <p>4. Analogue data is converted to digital by an <span class="fill-line" style="min-width: 150px;"></span>.</p>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="header">
+            <h1>AUTOMATED SYSTEMS (Continued)</h1>
+        </div>
+        
+        <h3>1.2 Advantages and Disadvantages of Automated Systems</h3>
+        
+        <div class="two-column">
+            <div class="box">
+                <h4>✅ ADVANTAGES</h4>
+                <ul>
+                    <li>Improved quality and flexibility</li>
+                    <li>Increased safety</li>
+                    <li>Much faster than humans</li>
+                    <li>Optimum operating conditions</li>
+                    <li>Less expensive long-term</li>
+                    <li>Efficient use of materials</li>
+                    <li>Higher productivity</li>
+                    <li>More consistent results</li>
+                </ul>
+            </div>
+            
+            <div class="box">
+                <h4>❌ DISADVANTAGES</h4>
+                <ul>
+                    <li>Expensive initial setup and testing</li>
+                    <li>Unexpected conditions may cause safety issues</li>
+                    <li>Vulnerable to cyberattacks</li>
+                    <li>Requires expensive maintenance</li>
+                    <li>Needs supervisors for safety</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>EXERCISE 2: Scenario Analysis</h3>
+        <div class="question">
+            <span class="question-number">SCENARIO:</span> A school wants to install an automated lighting system in classrooms that turns lights on when people enter and off when the room is empty.
+            
+            <p style="margin-top: 10px;"><strong>a) What type of sensor would be needed?</strong></p>
+            <div class="answer-space"></div>
+            
+            <p><strong>b) List TWO advantages of this automated system:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+            
+            <p><strong>c) List ONE potential disadvantage:</strong></p>
+            <div class="answer-space"></div>
+        </div>
+        
+        <h3>EXERCISE 3: Application Areas</h3>
+        <div class="question">
+            <p><strong>Give ONE example of how automated systems are used in each area:</strong></p>
+            
+            <p style="margin-top: 10px;">1. <strong>Transport:</strong></p>
+            <div class="answer-space"></div>
+            
+            <p>2. <strong>Industry/Factories:</strong></p>
+            <div class="answer-space"></div>
+            
+            <p>3. <strong>Home:</strong></p>
+            <div class="answer-space"></div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 3 -->
+    <div class="page">
+        <div class="header">
+            <h1>PART 2: ROBOTICS</h1>
+        </div>
+        
+        <div class="key-concept">
+            <strong>📌 KEY DEFINITION:</strong>
+            The word "robot" comes from the Czech word <span class="highlight">"robota"</span> meaning "forced labour". Robotics is a branch of computer science that brings together the design, construction, and operation of robots.
+        </div>
+        
+        <h3>2.1 The Three Characteristics of a Robot</h3>
+        
+        <div class="section">
+            <p><strong>1. ABILITY TO SENSE SURROUNDINGS:</strong></p>
+            <ul>
+                <li>Uses sensors (light, pressure, temperature, acoustic)</li>
+                <li>Recognizes immediate environment</li>
+                <li>Determines size, shape, weight, temperature of objects</li>
+                <li>All sensor data sent to microprocessor/computer</li>
+            </ul>
+            
+            <p style="margin-top: 10px;"><strong>2. DEGREE OF MOVEMENT:</strong></p>
+            <ul>
+                <li>Uses wheels, cogs, pistons, gears</li>
+                <li>Can turn, twist, move, grip, lift</li>
+                <li>Contains motors, hydraulic pipes, actuators, circuit boards</li>
+                <li>Can use different end effectors (welding, spraying, cutting, lifting)</li>
+            </ul>
+            
+            <p style="margin-top: 10px;"><strong>3. PROGRAMMABLE:</strong></p>
+            <ul>
+                <li>Has a 'brain' called a controller</li>
+                <li>Controller determines actions to perform tasks</li>
+                <li>Relies on data from sensors or cameras</li>
+                <li>Can be programmed for specific tasks</li>
+            </ul>
+        </div>
+        
+        <h3>2.2 Types of Robots</h3>
+        
+        <table>
+            <tr>
+                <th>INDEPENDENT ROBOTS</th>
+                <th>DEPENDENT ROBOTS</th>
+            </tr>
+            <tr>
+                <td>
+                    • No direct human control (autonomous)<br>
+                    • Can replace human activity totally<br>
+                    • Examples: autonomous vehicles, floor sweepers, lawn mowers
+                </td>
+                <td>
+                    • Human interfaces directly with robot<br>
+                    • Supplements rather than replaces humans<br>
+                    • Examples: car assembly plants with human-robot collaboration
+                </td>
+            </tr>
+        </table>
+        
+        <div class="note-box">
+            <strong>⚠️ IMPORTANT NOTES:</strong>
+            <ul>
+                <li>Many robots DON'T possess AI - they do repetitive tasks</li>
+                <li>Software robots (search engine bots, chatbots) are NOT true physical robots</li>
+            </ul>
+        </div>
+        
+        <h3>EXERCISE 4: Robot Applications</h3>
+        <div class="question">
+            <p><strong>List TWO examples of robots used in:</strong></p>
+            
+            <p style="margin-top: 10px;">a) <strong>Factories:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+            
+            <p>b) <strong>Homes:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 4 -->
+    <div class="page">
+        <div class="header">
+            <h1>PART 3: ARTIFICIAL INTELLIGENCE (AI)</h1>
+        </div>
+        
+        <div class="key-concept">
+            <strong>📌 KEY DEFINITION:</strong>
+            <span class="highlight">Artificial Intelligence (AI)</span> is a branch of computer science dealing with the simulation of intelligent human behaviour by a computer. It replicates cognitive functions like reasoning, learning, and understanding.
+        </div>
+        
+        <h3>3.1 Three Categories of AI</h3>
+        
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Narrow AI</strong></td>
+                <td>Machine has SUPERIOR performance in ONE specific task</td>
+            </tr>
+            <tr>
+                <td><strong>General AI</strong></td>
+                <td>Machine has SIMILAR performance to humans in a specific task</td>
+            </tr>
+            <tr>
+                <td><strong>Strong AI</strong></td>
+                <td>Machine has SUPERIOR performance in MANY tasks</td>
+            </tr>
+        </table>
+        
+        <h3>3.2 Characteristics of AI</h3>
+        
+        <div class="section">
+            <p>AI is a collection of rules and data, with the ability to <strong>reason, learn, and adapt</strong> to external stimuli.</p>
+            
+            <p style="margin-top: 10px;"><strong>REASONING:</strong> The ability to draw reasoned conclusions based on given data/situations. Uses deductive reasoning to build up facts into rules that can be applied to other problems.</p>
+            
+            <p style="margin-top: 10px;"><strong>LEARNING & ADAPTING:</strong> The AI system learns from sequences of steps and applies knowledge to new situations. Can quickly discern patterns and make predictions.</p>
+        </div>
+        
+        <h3>3.3 Examples of AI</h3>
+        <ul>
+            <li>News generation based on live feeds</li>
+            <li>Smart home devices (Amazon Alexa, Google Now, Apple Siri, Microsoft Cortana)</li>
+            <li>Chatbots that interact through instant messaging</li>
+        </ul>
+        
+        <h3>EXERCISE 5: Understanding AI</h3>
+        <div class="question">
+            <p><strong>1. Explain the difference between a robot and AI:</strong></p>
+            <div class="answer-box"></div>
+            
+            <p><strong>2. Give an example of Narrow AI that you use or know about:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+            
+            <p><strong>3. How do smart home devices like Alexa demonstrate AI characteristics?</strong></p>
+            <div class="answer-box"></div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 5 -->
+    <div class="page">
+        <div class="header">
+            <h1>PART 4: EXPERT SYSTEMS & MACHINE LEARNING</h1>
+        </div>
+        
+        <h3>4.1 Expert Systems</h3>
+        
+        <div class="key-concept">
+            <strong>📌 DEFINITION:</strong>
+            An <span class="highlight">expert system</span> is a computer system that mimics human decision-making ability. It uses AI to simulate the judgement and behaviour of a human or organization with expert knowledge.
+        </div>
+        
+        <div class="section">
+            <p><strong>How Expert Systems Work:</strong></p>
+            <p>They ask a series of questions, analyze answers, and provide a diagnosis or conclusion with a percentage probability of accuracy.</p>
+            
+            <p style="margin-top: 10px;"><strong>Example:</strong> A medical expert system might analyze symptoms (impaired vision, lack of coordination, weak muscles, slurred speech, worked in paint factory) and diagnose mercury poisoning.</p>
+        </div>
+        
+        <h3>4.2 Applications of Expert Systems</h3>
+        <ul>
+            <li>Oil and mineral prospecting</li>
+            <li>Medical diagnosis</li>
+            <li>Fault diagnostics in equipment</li>
+            <li>Tax and financial calculations</li>
+            <li>Strategy games (chess)</li>
+            <li>Logistics and delivery routing</li>
+            <li>Identification of plants, animals, compounds</li>
+        </ul>
+        
+        <h3>4.3 Advantages and Disadvantages</h3>
+        
+        <div class="two-column">
+            <div class="box">
+                <h4>✅ ADVANTAGES</h4>
+                <ul style="font-size: 9pt;">
+                    <li>High level of expertise</li>
+                    <li>High accuracy</li>
+                    <li>Consistent results</li>
+                    <li>Stores vast amounts of information</li>
+                    <li>Traceable logical solutions</li>
+                    <li>Multiple expertise possible</li>
+                    <li>Very fast response times</li>
+                    <li>Unbiased reporting</li>
+                    <li>Shows probability of solutions</li>
+                </ul>
+            </div>
+            
+            <div class="box">
+                <h4>❌ DISADVANTAGES</h4>
+                <ul style="font-size: 9pt;">
+                    <li>Users need considerable training</li>
+                    <li>Very high setup & maintenance costs</li>
+                    <li>May give "cold" responses</li>
+                    <li>Only as good as data entered</li>
+                    <li>Users may assume they're infallible</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h3>4.4 Machine Learning</h3>
+        <div class="key-concept">
+            <strong>📌 DEFINITION:</strong>
+            <span class="highlight">Machine learning</span> is the science of training computers with sample data so they can make predictions about new unseen data, without needing to be specifically programmed for the new data.
+        </div>
+        
+        <h3>EXERCISE 6: Expert Systems Application</h3>
+        <div class="question">
+            <p><strong>1. Choose ONE application of expert systems and explain how it would be useful:</strong></p>
+            <div class="answer-box"></div>
+            
+            <p><strong>2. Why might a doctor still be needed even with a medical expert system?</strong></p>
+            <div class="answer-box"></div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 6 - QUIZ -->
+    <div class="page">
+        <div class="header">
+            <h1>ASSESSMENT QUIZ</h1>
+        </div>
+        
+        <div class="score-box">
+            Score: _____ / 10
+        </div>
+        
+        <h3>Multiple Choice Questions - Circle the correct answer</h3>
+        
+        <div class="question">
+            <span class="question-number">1. What are the three main components of an automated system?</span>
+            <div class="mcq-option">A) Computer, keyboard, and mouse</div>
+            <div class="mcq-option">B) Sensors, microprocessor, and actuators</div>
+            <div class="mcq-option">C) Monitor, CPU, and printer</div>
+            <div class="mcq-option">D) Camera, speaker, and screen</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">2. What does an actuator do?</span>
+            <div class="mcq-option">A) Collects data from the environment</div>
+            <div class="mcq-option">B) Stores information</div>
+            <div class="mcq-option">C) Converts electrical energy into mechanical force</div>
+            <div class="mcq-option">D) Processes information</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">3. Which is NOT an advantage of automated systems?</span>
+            <div class="mcq-option">A) Increased safety</div>
+            <div class="mcq-option">B) Higher productivity</div>
+            <div class="mcq-option">C) Cheap initial setup</div>
+            <div class="mcq-option">D) More consistent results</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">4. What does the word "robot" originally mean?</span>
+            <div class="mcq-option">A) Intelligent machine</div>
+            <div class="mcq-option">B) Forced labour</div>
+            <div class="mcq-option">C) Automatic helper</div>
+            <div class="mcq-option">D) Metal worker</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">5. Which type of AI has superior performance in ONE specific task?</span>
+            <div class="mcq-option">A) General AI</div>
+            <div class="mcq-option">B) Narrow AI</div>
+            <div class="mcq-option">C) Strong AI</div>
+            <div class="mcq-option">D) Weak AI</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">6. What is the main difference between independent and dependent robots?</span>
+            <div class="mcq-option">A) Independent robots are smaller</div>
+            <div class="mcq-option">B) Independent robots have no direct human control</div>
+            <div class="mcq-option">C) Dependent robots are more expensive</div>
+            <div class="mcq-option">D) Independent robots are faster</div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 7 - MORE QUIZ -->
+    <div class="page">
+        <div class="header">
+            <h1>ASSESSMENT QUIZ (Continued)</h1>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">7. True or False: All robots possess artificial intelligence.</span>
+            <div class="mcq-option">A) True</div>
+            <div class="mcq-option">B) False</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">8. Which is an example of an expert system application?</span>
+            <div class="mcq-option">A) Playing music</div>
+            <div class="mcq-option">B) Medical diagnosis</div>
+            <div class="mcq-option">C) Taking photographs</div>
+            <div class="mcq-option">D) Word processing</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">9. What is machine learning?</span>
+            <div class="mcq-option">A) Teaching humans to use machines</div>
+            <div class="mcq-option">B) Training computers with sample data to make predictions</div>
+            <div class="mcq-option">C) Building physical robots</div>
+            <div class="mcq-option">D) Installing software on computers</div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">10. Which is a disadvantage of expert systems?</span>
+            <div class="mcq-option">A) Very fast response times</div>
+            <div class="mcq-option">B) High accuracy</div>
+            <div class="mcq-option">C) Very high setup and maintenance costs</div>
+            <div class="mcq-option">D) Consistent results</div>
+        </div>
+        
+        <h3 style="margin-top: 30px;">Short Answer Questions</h3>
+        
+        <div class="question">
+            <span class="question-number">11. List THREE characteristics that define a robot:</span>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">12. Explain how an automated train signaling system works (include sensors, microprocessor, and actuators in your answer):</span>
+            <div class="answer-box" style="min-height: 100px;"></div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">13. Give TWO advantages and TWO disadvantages of using automated systems:</span>
+            <p><strong>Advantages:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+            <p><strong>Disadvantages:</strong></p>
+            <div class="answer-space"></div>
+            <div class="answer-space"></div>
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 8 - MATCHING & SUMMARY -->
+    <div class="page">
+        <div class="header">
+            <h1>MATCHING EXERCISE & SUMMARY</h1>
+        </div>
+        
+        <h3>EXERCISE 7: Match the Terms</h3>
+        <div class="question">
+            <p><strong>Draw lines to match each term with its correct definition:</strong></p>
+            
+            <table style="margin-top: 15px;">
                 <tr>
-                    <th>Device</th>
-                    <th>Image</th>
-                    <th>Type of NIC</th>
-                    <th>Connection Method</th>
+                    <td style="width: 40%;"><strong>TERM</strong></td>
+                    <td style="width: 60%;"><strong>DEFINITION</strong></td>
                 </tr>
                 <tr>
-                    <td>Desktop Computer</td>
-                    <td><div class="image-placeholder">Ethernet Port</div></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td>1. Sensor</td>
+                    <td>A. Mimics human decision-making</td>
                 </tr>
                 <tr>
-                    <td>Smartphone</td>
-                    <td><div class="image-placeholder">WiFi Symbol</div></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td>2. Actuator</td>
+                    <td>B. Reads data from environment</td>
                 </tr>
                 <tr>
-                    <td>Bluetooth Headphones</td>
-                    <td><div class="image-placeholder">Bluetooth Symbol</div></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
+                    <td>3. Microprocessor</td>
+                    <td>C. Converts electrical energy to movement</td>
+                </tr>
+                <tr>
+                    <td>4. Expert System</td>
+                    <td>D. Processes information and makes decisions</td>
+                </tr>
+                <tr>
+                    <td>5. Narrow AI</td>
+                    <td>E. Superior performance in one task</td>
+                </tr>
+                <tr>
+                    <td>6. Machine Learning</td>
+                    <td>F. Training computers to make predictions</td>
                 </tr>
             </table>
-            
-            <div class="word-bank">
-                <strong>Word Bank:</strong>
-                <span>Wired NIC</span> <span>Wireless NIC</span> <span>Ethernet Cable</span> 
-                <span>Radio Waves</span> <span>Bluetooth Signals</span> <span>Wi-Fi Signals</span>
-            </div>
         </div>
-
-        <div class="activity-box">
-            <h3>💭 Quick Think: What would happen if...?</h3>
-            <p>If we removed the NIC from a computer, what would happen?</p>
-            <div style="border: 1px solid #ddd; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
+        
+        <h3>EXERCISE 8: Summary Questions</h3>
+        
+        <div class="question">
+            <span class="question-number">1. In your own words, explain what an automated system is:</span>
+            <div class="answer-box" style="min-height: 80px;"></div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">2. Why might many robots NOT have artificial intelligence?</span>
+            <div class="answer-box" style="min-height: 60px;"></div>
+        </div>
+        
+        <div class="question">
+            <span class="question-number">3. Describe a situation in your daily life where you interact with AI:</span>
+            <div class="answer-box" style="min-height: 80px;"></div>
+        </div>
+        
+        <h3>REFLECTION</h3>
+        <div class="note-box">
+            <p><strong>What did you find most interesting about automated systems, robotics, or AI?</strong></p>
+            <div class="answer-box" style="min-height: 100px; border: none; background: white;"></div>
         </div>
     </div>
-
-    <!-- Section 2: MAC vs IP Addresses -->
-    <div class="section">
-        <h2>🏠 Part 2: MAC vs IP Addresses</h2>
+    
+    <div class="page-break"></div>
+    
+    <!-- PAGE 9 - STUDY TIPS -->
+    <div class="page">
+        <div class="header">
+            <h1>📚 STUDY TIPS & REVISION CHECKLIST</h1>
+        </div>
         
-        <div class="activity-box">
-            <h3>🎯 Activity 3: Sort and Classify</h3>
-            <p><strong>Instructions:</strong> Put the words from the word bank into the correct circles.</p>
-            
-            <div class="circle-diagram">
-                <div class="circle">
-                    <div>
-                        <strong>MAC Address</strong><br>
-                        <small>Write words here:</small>
-                        <div style="min-height: 60px; margin-top: 5px;"></div>
-                    </div>
-                </div>
-                
-                <div class="circle vs-circle">VS</div>
-                
-                <div class="circle">
-                    <div>
-                        <strong>IP Address</strong><br>
-                        <small>Write words here:</small>
-                        <div style="min-height: 60px; margin-top: 5px;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="word-bank">
-                <strong>Word Bank - Cut out and paste or copy:</strong><br>
-                <span>Permanent</span> <span>Changeable</span> <span>Manufacturer assigns</span>
-                <span>Network assigns</span> <span>Like fingerprint</span> <span>Like postal address</span>
-                <span>Local network only</span> <span>Works across internet</span>
-                <span>Hardware identity</span> <span>Network location</span>
-                <span>00:1B:44:11:3A:B7</span> <span>192.168.1.100</span>
-            </div>
-        </div>
-
-        <div class="activity-box">
-            <h3>🧠 Activity 4: Create Your Own Analogy</h3>
-            <div class="analogy-box">
-                <div class="analogy-item">
-                    <strong>MAC Address</strong><br>
-                    is like<br>
-                    <div style="border: 1px solid #ddd; min-height: 40px; padding: 5px; margin: 5px 0;"></div>
-                </div>
-                <div class="equals-sign">=</div>
-                <div class="analogy-item">
-                    <strong>IP Address</strong><br>
-                    is like<br>
-                    <div style="border: 1px solid #ddd; min-height: 40px; padding: 5px; margin: 5px 0;"></div>
-                </div>
-            </div>
-            <p><em>Examples: ID card vs home address, DNA vs current location, etc.</em></p>
-        </div>
-
-        <div class="activity-box">
-            <h3>📋 Activity 5: Fill in the Comparison Chart</h3>
-            <table class="matching-table">
-                <tr>
-                    <th>Feature</th>
-                    <th>MAC Address</th>
-                    <th>IP Address</th>
-                </tr>
-                <tr>
-                    <td>Can it be changed?</td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                </tr>
-                <tr>
-                    <td>Who assigns it?</td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                </tr>
-                <tr>
-                    <td>Where does it work?</td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                </tr>
-                <tr>
-                    <td>Example format</td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                    <td style="border: 1px solid #ddd; min-height: 30px; padding: 5px;"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- Section 3: Router -->
-    <div class="section">
-        <h2>🚦 Part 3: The Role of a Router</h2>
+        <h3>How to Use This Handout for Studying</h3>
         
-        <div class="activity-box">
-            <h3>🎯 Activity 6: Router Functions - Check the Boxes</h3>
-            <p><strong>What does a router do? Tick all that apply:</strong></p>
-            <div style="margin: 15px 0;">
-                <label><input type="checkbox"> □ Stores all your photos</label><br>
-                <label><input type="checkbox"> □ Directs data to correct destinations</label><br>
-                <label><input type="checkbox"> □ Connects different networks together</label><br>
-                <label><input type="checkbox"> □ Makes coffee</label><br>
-                <label><input type="checkbox"> □ Provides network security</label><br>
-                <label><input type="checkbox"> □ Finds the best path for data</label><br>
-                <label><input type="checkbox"> □ Plays music</label><br>
-                <label><input type="checkbox"> □ Prevents data collisions</label><br>
-            </div>
+        <div class="note-box">
+            <p><strong>✓</strong> Complete all exercises as you study each section</p>
+            <p><strong>✓</strong> Highlight or underline key terms and definitions</p>
+            <p><strong>✓</strong> Create your own examples for each concept</p>
+            <p><strong>✓</strong> Test yourself using the quiz section without looking at notes</p>
+            <p><strong>✓</strong> Review the diagrams and flow charts regularly</p>
+            <p><strong>✓</strong> Discuss concepts with classmates or family members</p>
         </div>
-
-        <div class="activity-box">
-            <h3>🚦 Activity 7: Router Analogy Web</h3>
-            <p><strong>We learned that a router is like a traffic police officer. Can you think of 3 other analogies?</strong></p>
-            
-            <div style="text-align: center; margin: 20px 0;">
-                <div style="width: 100px; height: 100px; border: 3px solid #ff5722; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: #fff3e0;">
-                    <strong>ROUTER<br>is like...</strong>
-                </div>
-                
-                <div style="display: flex; justify-content: space-around; margin: 30px 0;">
-                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
-                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
-                    <div style="width: 80px; height: 80px; border: 2px solid #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f8e9; font-size: 12px; text-align: center;"></div>
-                </div>
-            </div>
+        
+        <h3>Revision Checklist - Tick when you can do each:</h3>
+        
+        <div class="section">
+            <p><span class="checkbox"></span> Define what an automated system is</p>
+            <p><span class="checkbox"></span> Explain the role of sensors, microprocessors, and actuators</p>
+            <p><span class="checkbox"></span> List at least 5 advantages of automated systems</p>
+            <p><span class="checkbox"></span> List at least 3 disadvantages of automated systems</p>
+            <p><span class="checkbox"></span> Give examples of automated systems in transport</p>
+            <p><span class="checkbox"></span> Explain what makes something a robot</p>
+            <p><span class="checkbox"></span> Describe the 3 characteristics of robots</p>
+            <p><span class="checkbox"></span> Explain the difference between independent and dependent robots</p>
+            <p><span class="checkbox"></span> Give examples of robots in factories and homes</p>
+            <p><span class="checkbox"></span> Define artificial intelligence (AI)</p>
+            <p><span class="checkbox"></span> Describe the 3 categories of AI (Narrow, General, Strong)</p>
+            <p><span class="checkbox"></span> Give examples of AI in everyday life</p>
+            <p><span class="checkbox"></span> Explain what an expert system is</p>
+            <p><span class="checkbox"></span> List applications of expert systems</p>
+            <p><span class="checkbox"></span> Know advantages and disadvantages of expert systems</p>
+            <p><span class="checkbox"></span> Define machine learning</p>
+            <p><span class="checkbox"></span> Explain why not all robots have AI</p>
         </div>
-
-        <div class="activity-box">
-            <h3>🎭 Activity 8: Human Router Simulation Notes</h3>
-            <p><strong>During our class activity, write down what you observed:</strong></p>
-            
-            <p><strong>What happened when routers were working normally?</strong></p>
-            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
-            
-            <p><strong>What happened when one router "went down"?</strong></p>
-            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
-            
-            <p><strong>Why do we need multiple routers on the internet?</strong></p>
-            <div style="border: 1px solid #ddd; min-height: 50px; padding: 10px; margin: 10px 0;"></div>
+        
+        <h3>Key Terms to Remember</h3>
+        
+        <table>
+            <tr>
+                <td><strong>Automated System</strong></td>
+                <td><strong>Sensor</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Microprocessor</strong></td>
+                <td><strong>Actuator</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Robot</strong></td>
+                <td><strong>Robotics</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Controller</strong></td>
+                <td><strong>End Effector</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Independent Robot</strong></td>
+                <td><strong>Dependent Robot</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Artificial Intelligence</strong></td>
+                <td><strong>Cognitive Functions</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Narrow AI</strong></td>
+                <td><strong>General AI</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Strong AI</strong></td>
+                <td><strong>Expert System</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Machine Learning</strong></td>
+                <td><strong>ADC</strong></td>
+            </tr>
+        </table>
+        
+        <div class="note-box" style="margin-top: 20px;">
+            <h4 style="margin-bottom: 10px;">💡 EXAM TIP:</h4>
+            <p>When answering questions about automated systems, always try to mention all three components: <strong>SENSORS → MICROPROCESSOR → ACTUATORS</strong></p>
+            <p style="margin-top: 10px;">When describing robots, remember the three characteristics: <strong>SENSE, MOVE, PROGRAMMABLE</strong></p>
+        </div>
+        
+        <div class="key-concept" style="margin-top: 20px; text-align: center;">
+            <strong>Good luck with your studies! 🌟</strong>
+            <p style="margin-top: 10px;">Remember: Understanding concepts is more important than memorizing facts.</p>
+            <p>Ask questions if something doesn't make sense!</p>
         </div>
     </div>
-
-    <!-- Reflection Section -->
-    <div class="reflection-box">
-        <h2>🤔 What I Learned Today</h2>
-        
-        <p><strong>1. The most interesting thing I learned was:</strong></p>
-        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
-        
-        <p><strong>2. One thing I'm still confused about:</strong></p>
-        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
-        
-        <p><strong>3. How I use networking in my daily life:</strong></p>
-        <div style="border: 1px solid #9c27b0; min-height: 60px; padding: 10px; margin: 10px 0;"></div>
-        
-        <p><strong>4. Rate your understanding (circle one):</strong></p>
-        <div style="font-size: 18px; margin: 10px 0;">
-            😕 Need Help &nbsp;&nbsp;&nbsp; 😐 Getting There &nbsp;&nbsp;&nbsp; 🙂 Good &nbsp;&nbsp;&nbsp; 😄 Excellent!
-        </div>
-    </div>
-
-    <!-- Homework Section -->
-    <div class="homework-section">
-        <h2>🏠 Homework Investigation</h2>
-        
-        <p><strong>Become a network detective! Complete these tasks:</strong></p>
-        
-        <div style="margin: 15px 0;">
-            <p><strong>1. Device Hunt - Find examples:</strong></p>
-            <p>Device with WIRED NIC: <span class="fill-blank" style="width: 200px;"></span></p>
-            <p>Device with WIRELESS NIC: <span class="fill-blank" style="width: 200px;"></span></p>
-        </div>
-        
-        <div style="margin: 15px 0;">
-            <p><strong>2. Draw a diagram showing how your home router connects devices to the internet:</strong></p>
-            <div style="border: 1px solid #4caf50; min-height: 150px; padding: 10px; margin: 10px 0; background: white;">
-                <small><em>Include: Your devices → Router → Internet</em></small>
-            </div>
-        </div>
-    </div>
+    
 </body>
 </html>
